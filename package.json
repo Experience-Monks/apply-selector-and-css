@@ -18,7 +18,7 @@
     "tape": "^3.5.0"
   },
   "scripts": {
-    "test": "node test.js"
+    "test": "node test/"
   },
   "keywords": [
     "html,element,id,className,css"
