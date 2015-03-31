@@ -17,9 +17,14 @@ module.exports = function cssApply(css) {
 
 			var css = getCSS.fromElIdClassName(infoSelector.el, infoSelector.id, infoSelector.className);
 
-			el.id = infoSelector.id.substr(1);
-			el.className = infoSelector.className.split('.').slice(1).join(' ');
-
+			if(infoSelector.id) {
+				el.id = infoSelector.id.substr(1);	
+			}
+			
+			if(infoSelector.className) {
+				el.className = infoSelector.className.split('.').slice(1).join(' ');	
+			}
+			
 			try {
 
 				domCSS(el, css);	
