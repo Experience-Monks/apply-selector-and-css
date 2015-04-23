@@ -1,6 +1,6 @@
 {
   "name": "apply-selector-and-css",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Setup id, className, and inline css if needed for and HTMLElement based on a selector. Handy for cases where sometimes css maybe applied from an external file or sometimes from inline.css",
   "main": "index.js",
   "license": "MIT",
