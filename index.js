@@ -4,18 +4,17 @@ var cssobjectFromSelector = require('cssobject-from-selector');
 
 module.exports = function cssApply(css) {
 
-	var getCSS = cssobjectFromSelector(css);
+	var getCSS = css ? cssobjectFromSelector(css) : null;
 
 	return function cssApply(el, selector) {
 
 		var infoSelector = parseSelector(selector);
+		var css;
 		var style;
 
 		if(infoSelector.length === 1) {
 
 			infoSelector = infoSelector[ 0 ];
-
-			var css = getCSS.fromElIdClassName(infoSelector.el, infoSelector.id, infoSelector.className);
 
 			if(infoSelector.id) {
 				el.id = infoSelector.id.substr(1);	
@@ -25,15 +24,21 @@ module.exports = function cssApply(css) {
 				el.className = infoSelector.className.split('.').slice(1).join(' ');	
 			}
 			
-			try {
+			// if css was passed
+			if(getCSS) {
 
-				domCSS(el, css);	
-			} catch(e) {
+				css = getCSS.fromElIdClassName(infoSelector.el, infoSelector.id, infoSelector.className);
 
-				style = el.style || ( el.style = {} );
+				try {
 
-				for( var i in css ) {
-					style[ i ] = css[ i ];
+					domCSS(el, css);	
+				} catch(e) {
+
+					style = el.style || ( el.style = {} );
+
+					for( var i in css ) {
+						style[ i ] = css[ i ];
+					}
 				}
 			}
 		} else {

@@ -17,15 +17,12 @@ test('with css', function(t) {
 	try {
 		el = document.createElement('div');
 		document.body.appendChild(el);
-
-		apply(el, 'div#id.classA.classB');
 	} catch(e) {
 		inBrowser = false;
-
 		el = {};
-
-		apply(el, 'div#id.classA.classB');
 	}
+
+	apply(el, 'div#id.classA.classB');
 
 	t.equal(el.id, 'id', 'id set properly');
 	t.equal(el.className, 'classA classB', 'className set properly');
@@ -49,17 +46,36 @@ test('without css', function(t) {
 	try {
 		el = document.createElement('div');
 		document.body.appendChild(el);
-
-		apply(el, 'div#thisIsAnId.aClass');
 	} catch(e) {
 		inBrowser = false;
 
 		el = {};
-
-		apply(el, 'div#id.classA.classB');
 	}
+
+	apply(el, 'div#thisIsAnId.aClass');
 
 	t.equal(el.id, 'thisIsAnId', 'id set properly');
 	t.equal(el.className, 'aClass', 'className set properly');
+	t.end();
+});
+
+test('without css descriptor', function(t) {
+	var apply = applySelectorAndCss();
+	var inBrowser = true;
+	var el;
+
+	try {
+		el = document.createElement('div');
+		document.body.appendChild(el);
+	} catch(e) {
+		inBrowser = false;
+
+		el = {};
+	}
+
+	apply(el, 'div#hmmID.hmmmClass');
+
+	t.equal(el.id, 'hmmID', 'id set properly');
+	t.equal(el.className, 'hmmmClass', 'className set properly');
 	t.end();
 });
