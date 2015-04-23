@@ -40,3 +40,26 @@ test('with css', function(t) {
 	
 	t.end();
 });
+
+test('without css', function(t) {
+	var apply = applySelectorAndCss(css);
+	var inBrowser = true;
+	var el;
+
+	try {
+		el = document.createElement('div');
+		document.body.appendChild(el);
+
+		apply(el, 'div#thisIsAnId.aClass');
+	} catch(e) {
+		inBrowser = false;
+
+		el = {};
+
+		apply(el, 'div#id.classA.classB');
+	}
+
+	t.equal(el.id, 'thisIsAnId', 'id set properly');
+	t.equal(el.className, 'aClass', 'className set properly');
+	t.end();
+});

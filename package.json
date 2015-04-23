@@ -21,7 +21,7 @@
     "test": "node test/"
   },
   "keywords": [
-    "html,element,id,className,css"
+    "html,element,id,className,css,apply,selector"
   ],
   "repository": {
     "type": "git",
