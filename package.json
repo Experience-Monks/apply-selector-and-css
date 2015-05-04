@@ -10,7 +10,7 @@
     "url": "https://github.com/mikkoh"
   },
   "dependencies": {
-    "cssobject-from-selector": "^1.0.1",
+    "cssobject-from-selector": "^1.0.2",
     "dom-css": "^1.1.1",
     "parse-selector": "^1.0.0"
   },
